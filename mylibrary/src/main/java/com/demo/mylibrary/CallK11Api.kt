@@ -10,11 +10,11 @@ import retrofit2.Response
 
 class CallK11Api {
     companion object {
-        fun registerApi(param: String = "", apiCallback: (ApiResponse?, String?) -> Unit) {
+        fun registerApi(param: String = "", productId: String = "KAPTAIN11", apiCallback: (ApiResponse?, String?) -> Unit) {
             RetrofitClient.instance?.let {
                 val jsonObject = JsonObject()
                 jsonObject.addProperty("currentVersion", param)
-                jsonObject.addProperty("productId", "KAPTAIN11")
+                jsonObject.addProperty("productId", productId)
                 val call: Call<ApiResponse> = it.getK11Api().getK11ApiCall(jsonObject)
                 call.enqueue(object : Callback<ApiResponse> {
                     override fun onResponse(
